@@ -1,0 +1,36 @@
+2026-11-18T20:57:38.315074Z	    9 Query	
+2026-11-18T21:00:39.100351Z	    9 Query	select @@version_comment limit 1
+2026-11-18T21:00:45.654203Z	    9 Query	CREATE DATABASE orders_norm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+2026-11-18T21:00:45.677805Z	    9 Query	CREATE TABLE orders_unnormalized (
+2026-11-18T21:00:46.500989Z	    9 Query	INSERT INTO orders_unnormalized VALUES
+2026-11-18T21:02:58.076526Z	    9 Query	SELECT * FROM orders_unnormalized
+2026-11-18T21:00:53.436690Z	    9 Query	SELECT SUM(price * quantity) AS total FROM orders_unnormalized
+2026-11-18T21:01:00.243860Z	    9 Query	UPDATE orders_unnormalized 
+2026-11-18T21:01:00.959377Z	    9 Query	SELECT * FROM orders_unnormalized WHERE representative_id = 501
+2026-11-18T21:03:16.713959Z	    9 Query	DELETE FROM orders_unnormalized WHERE order_id = 2003
+2026-11-18T21:03:17.506993Z	    9 Query	SELECT * FROM orders_unnormalized WHERE representative_id = 503
+2026-11-18T21:01:19.890907Z	    9 Query	INSERT INTO orders_unnormalized VALUES
+2026-11-18T21:01:27.304968Z	    9 Query	INSERT INTO orders_unnormalized (representative_id, representative_name) 
+2026-11-18T21:01:28.009180Z	    9 Query	SELECT * FROM orders_unnormalized WHERE representative_id = 999
+2026-11-18T21:01:35.923828Z	    9 Query	DELETE FROM orders_unnormalized WHERE representative_id = 999
+2026-11-18T21:03:48.284050Z	    9 Query	UPDATE orders_unnormalized 
+2026-11-18T21:01:43.051420Z	    9 Query	SELECT SUM(price * quantity) AS total FROM orders_unnormalized
+2026-11-18T21:02:56.369407Z	   11 Query	select @@version_comment limit 1
+2026-11-18T21:03:02.528475Z	   11 Query	CREATE TABLE customers (
+2026-11-18T21:03:02.618876Z	   11 Query	CREATE TABLE products (
+2026-11-18T21:03:02.691210Z	   11 Query	CREATE TABLE representatives (
+2026-11-18T21:03:02.762125Z	   11 Query	CREATE TABLE orders (
+2026-11-18T21:03:03.390658Z	   11 Query	CREATE TABLE order_items (
+2026-11-18T21:03:08.668437Z	   11 Query	INSERT INTO customers (customer_id, customer_name)
+2026-11-18T21:03:08.683234Z	   11 Query	INSERT INTO products (product_id, product_name, price)
+2026-11-18T21:03:08.696970Z	   11 Query	INSERT INTO representatives (representative_id, representative_name)
+2026-11-18T21:03:08.710751Z	   11 Query	INSERT INTO orders (order_id, order_date, customer_id, representative_id)
+2026-11-18T21:03:09.316511Z	   11 Query	INSERT INTO order_items (order_id, product_id, quantity)
+2026-11-18T21:03:14.052154Z	   11 Query	SELECT SUM(price * quantity) AS total_old FROM orders_unnormalized
+2026-11-18T21:03:14.053589Z	   11 Query	SELECT SUM(p.price * oi.quantity) AS total_new
+2026-11-18T21:03:14.054830Z	   11 Query	SELECT COUNT(*) AS customers FROM customers
+2026-11-18T21:03:14.057179Z	   11 Query	SELECT COUNT(*) AS products FROM products
+2026-11-18T21:03:14.059008Z	   11 Query	SELECT COUNT(*) AS representatives FROM representatives
+2026-11-18T21:03:14.061167Z	   11 Query	SELECT COUNT(*) AS orders FROM orders
+2026-11-18T21:03:15.454304Z	   11 Query	SELECT COUNT(*) AS items FROM order_items
+2026-11-18T21:03:25.723135Z	   11 Query	SELECT SUM(p.price * oi.quantity) AS total_sales
